@@ -1,0 +1,64 @@
+﻿html, body, form {
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+    height: 100%;
+}
+
+.boos {
+    width: 100%;
+    height: 100%;
+}
+
+.div_title {
+    width: 100%;
+    height: 15%;
+    background-color: antiquewhite;
+}
+
+.div_title_head{
+    width:100%;
+    height:50%;
+    text-align:right;
+}
+
+.div_title_foot {
+    width: 100%;
+    height: 50%;
+}
+
+.div_title_center {
+    width: 70%;
+    height: 70%;
+    margin:0 auto;
+}
+
+.div_left {
+    width: 20%;
+    height: 85%;
+    float: left;
+    /*background-color: aqua;*/
+}
+
+.div_right {
+    width: 80%;
+    height: 85%;
+    float: right;
+    /*background-color:bisque;*/
+}
+
+.div_center {
+    width: 35%;
+    height:40%;
+    position:relative;
+    margin:0 auto;
+    top:25%;
+}
+
+.div_reguser {
+    width: 35%;
+    height: 50%;
+    position: relative;
+    margin: 0 auto;
+    top:10%;
+}
