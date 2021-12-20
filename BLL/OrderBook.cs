@@ -136,11 +136,40 @@ namespace BookShop.BLL
 		/// </summary>
 		//public DataSet GetList(int PageSize,int PageIndex,string strWhere)
 		//{
-			//return dal.GetList(PageSize,PageIndex,strWhere);
+		//return dal.GetList(PageSize,PageIndex,strWhere);
 		//}
 
 		#endregion  BasicMethod
 		#region  ExtensionMethod
+
+		/// <summary>
+		/// 根据Orderid删除数据
+		/// </summary>
+		public bool OrederDel(string Orderid)
+		{
+			string sql = $"delete from Orderbook where Orderid='{Orderid}'";
+			int i = DAL.DbHelperSQL.ExecuteSql(sql);
+			if (i > 0)
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+
+		/// <summary>
+		/// 获取当前书籍Model
+		/// </summary>
+		/// <param name="Id"></param>
+		/// <returns></returns>
+		public Model.OrderBook Select(int Id)
+        {
+			List<Model.OrderBook> modList = GetModelList("");
+			Model.OrderBook mod = modList.Find(p => p.Id == Id);
+			return mod;
+        }
 
 		#endregion  ExtensionMethod
 	}

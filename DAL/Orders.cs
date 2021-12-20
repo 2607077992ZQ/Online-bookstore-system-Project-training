@@ -149,26 +149,37 @@ namespace BookShop.DAL
 		/// </summary>
 		public BookShop.Model.Orders GetModel(int Id)
 		{
-			
-			StringBuilder strSql=new StringBuilder();
-			strSql.Append("select  top 1 Id,OrderDate,UserId,TotalPrice from Orders ");
-			strSql.Append(" where Id=@Id");
-			SqlParameter[] parameters = {
-					new SqlParameter("@Id", SqlDbType.Int,4)
-			};
-			parameters[0].Value = Id;
+			//StringBuilder strSql=new StringBuilder();
+			//strSql.Append("select  top 1 Id,OrderDate,UserId,TotalPrice from Orders ");
+			//strSql.Append(" where Id=@Id");
+			//SqlParameter[] parameters = {
+			//		new SqlParameter("@Id", SqlDbType.Int,4)
+			//};
+			//parameters[0].Value = Id;
 
-			BookShop.Model.Orders model=new BookShop.Model.Orders();
-			DataSet ds=DbHelperSQL.Query(strSql.ToString(),parameters);
-			if(ds.Tables[0].Rows.Count>0)
-			{
-				return DataRowToModel(ds.Tables[0].Rows[0]);
-			}
-			else
-			{
-				return null;
-			}
-		}
+			//BookShop.Model.Orders model=new BookShop.Model.Orders();
+			//DataSet ds=DbHelperSQL.Query(strSql.ToString(),parameters);
+			//if(ds.Tables[0].Rows.Count>0)
+			//{
+			//	return DataRowToModel(ds.Tables[0].Rows[0]);
+			//}
+			//else
+			//{
+			//	return null;
+			//}
+
+			string sql = $"select  top 1 Id,OrderDate,UserId,TotalPrice from Orders  where Id={Id}";
+            BookShop.Model.Orders model = new BookShop.Model.Orders();
+            DataSet ds = DbHelperSQL.Query(sql);
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                return DataRowToModel(ds.Tables[0].Rows[0]);
+            }
+            else
+            {
+                return null;
+            }
+        }
 
 
 		/// <summary>

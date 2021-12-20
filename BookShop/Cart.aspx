@@ -7,7 +7,15 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <link type="text/css" rel="stylesheet" href="css/internet.css" />
 <link type="text/css" rel="stylesheet" href="css/StyleSheet1.css" />
+<script src="Scripts/bootstrap.js"></script>
     <title>我的购物车</title>
+    <script>
+    function test() {
+        var toastLiveExample = document.getElementById('liveToast')
+        var toast = new bootstrap.Toast(toastLiveExample)
+        toast.show();
+    }
+    </script>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -38,10 +46,6 @@
                                         <a class="nav-link" href="#">管理员页面</a>
                                     </li>
                                     </ul>
-                                    <!--
-                                    <asp:TextBox ID="txtSubmit" runat="server" CssClass="form-control me-2" placeholder="查找" Width="50%"></asp:TextBox>
-                                    <asp:Button ID="btnSubmit" runat="server" Text="查找" CssClass="btn btn-outline-success"/>
-                                    -->
                                 </div>
                             </div>
                         </nav>
@@ -73,7 +77,9 @@
                                     <td>《<%#Eval("title") %>》</td>
                                     <td><%#Eval("UnitPrice") %></td>
                                     <td><%#Eval("Quantity") %></td>
-                                    <td><%#Convert.ToDouble(Eval("UnitPrice"))*Convert.ToDouble(Eval("Quantity")) %></td>
+                                    <td>
+                                        <%#Convert.ToDouble(Eval("UnitPrice"))*Convert.ToDouble(Eval("Quantity")) %>
+                                    </td>
                                 </tr>
                         </ItemTemplate>
                         <FooterTemplate>
@@ -81,17 +87,28 @@
                         </FooterTemplate>
                     </asp:DataList>
 
-                    <!--
-                    <div style="width:70%;height:10%;background-color:burlywood; z-index: 9999; position: fixed ! important; top:90%">
-                        <h1 class="display-6" style="margin-top:1%;">&nbsp;
-                            共
-                            <asp:Label ID="lblcount" runat="server" Text="0"></asp:Label>
-                            个商品</h1>
-                    </div>
-                    -->
+                    <div style="width:100%; height:10%;">
+                        <div style="float:right" class="btn-group" role="group" aria-label="Basic example">
+                            <asp:Button ID="btnDelete" runat="server" Text="删除" CssClass="btn btn-primary" OnClick="btnDelete_Click"/>
+                            <asp:Button ID="btnSettlement" runat="server" Text="结算" CssClass="btn btn-primary" OnClick="btnSettlement_Click"/>
+                        </div>
+                    </div> 
+
                 </div>
             </div>
 
+            <!--触发警告-->
+            <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+                <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header">
+                      <strong class="me-auto">错误</strong>
+                      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                    <div class="toast-body">
+                        <%#str.ToString() %>
+                    </div>
+                </div>
+            </div>
 
         </div>
     </form>

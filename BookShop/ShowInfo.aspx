@@ -120,7 +120,7 @@
                       <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                     </div>
                     <div class="toast-body">
-                        最少购买一件商品
+                        <%#str.ToString() %>
                     </div>
                 </div>
             </div>

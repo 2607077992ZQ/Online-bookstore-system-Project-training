@@ -11,6 +11,7 @@ namespace BookShop
     public partial class ShowInfo : System.Web.UI.Page
     {
         Model.Users umod = new Model.Users();
+        public string str = "";
         private int info = 0; 
 
         protected void Page_Load(object sender, EventArgs e)
@@ -66,6 +67,11 @@ namespace BookShop
             Response.Redirect("ShowInfo.aspx");
         }
 
+        /// <summary>
+        /// 触发DataList内按钮
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="e"></param>
         protected void dltData_ItemCommand(object source, DataListCommandEventArgs e)
         {
             //取出当前购买数量
@@ -86,6 +92,8 @@ namespace BookShop
                 }
                 else
                 {
+                    str = "最少购买一件商品";
+                    this.DataBind();
                     this.Page.ClientScript.RegisterStartupScript(this.Page.GetType(), null, "<script>test();</script>");
                 }
 
@@ -96,6 +104,22 @@ namespace BookShop
                 //添加到购物车，然后返回主页
                 AddCart(count);
                 Response.Redirect("index.aspx");
+            }
+
+            if(e.CommandName == "buy")
+            {
+                if (Session["user"] != null)
+                {
+                    str = "购买成功!";
+                    this.DataBind();
+                    this.Page.ClientScript.RegisterStartupScript(this.Page.GetType(), null, "<script>test();</script>");
+                }
+                else
+                {
+                    Response.Redirect("login.aspx");
+                }
+                
+                
             }
 
         }
@@ -126,6 +150,9 @@ namespace BookShop
                 obmod.UnitPrice = bookbll.GetUnitprice(Convert.ToInt32(Session["info"]));
                 obookbll.Add(obmod);
 
+                str = "商品添加成功";
+                this.DataBind();
+                this.Page.ClientScript.RegisterStartupScript(this.Page.GetType(), null, "<script>test();</script>");
             }
             else
             {
